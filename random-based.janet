@@ -306,7 +306,8 @@
         ([e]
           # XXX
           (++ skipped))))
-    (printf "Shrinking: gave up at arguments %n" (get cur-result :arguments))
+    (printf "Shrinking: gave up at arguments %n"
+            (get cur-result :arguments))
     (printf "%n %n %n %n" skipped not-shrunk shrunk cur-min-size))
   #
   (var all-passed true)
