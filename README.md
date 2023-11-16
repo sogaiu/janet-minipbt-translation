@@ -20,13 +20,12 @@ property-based testing in which the author was kind enough to build up
 three simple implementations (with working code even!), one of which
 was based on Hypothesis.
 
-I was surprised to discover that there was another approach I had not
-heard of.  Allegedly, it was even simpler to understand than
-Hypothesis and there seemed to be some of hope of delivering decent
-enough results.
+The third approach in the article series was one I had not heard of
+before.  Allegedly, it was even simpler to understand than Hypothesis
+and there seemed to be some hope of delivering decent enough results.
 
 This repository is primarily about a Janet translation of the code in
-the "new found" approach.
+this "new found" approach.
 
 ## Some Details
 
@@ -37,7 +36,8 @@ article (the sixth in the series) and the file,
 attempt.
 
 There is also another file, [vintage.janet](vintage.janet), which is a
-translation of the second article, [The Essentials of Vintage
+translation of code from the second article, [The Essentials of
+Vintage
 QuickCheck](https://getcode.substack.com/p/-property-based-testing-2-the-essentials).
 This is included for comparison purposes and might be a better
 starting point for understanding as it's simpler.
