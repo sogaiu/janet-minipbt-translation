@@ -278,6 +278,8 @@
 
 (def n-tests-default 100)
 
+(def n-smaller-default 100_000)
+
 (defn test
   [prop]
   (defn find-smaller
@@ -287,7 +289,7 @@
     (var shrunk 0)
     (var cur-min-size min-size)
     (var cur-result min-result)
-    (while (and (<= (+ skipped not-shrunk shrunk) 100_000)
+    (while (and (<= (+ skipped not-shrunk shrunk) n-smaller-default)
                 (pos? cur-min-size))
       (try
         (do
