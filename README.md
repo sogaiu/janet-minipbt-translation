@@ -20,8 +20,8 @@ property-based testing in which the author was kind enough to build up
 three simple implementations (with working code even!).
 
 The first two were based on familiar approaches [1] but the third one
-in the article series was unfamiliar.  Allegedly, it was even simpler
-to understand than Hypothesis and there seemed to be some hope of
+in the article series was not.  Allegedly, it was even simpler to
+understand than Hypothesis and there seemed to be some hope of
 delivering decent enough results.
 
 This repository is primarily about a Janet translation of the code in
@@ -40,7 +40,7 @@ translation of code from the second article, [The Essentials of
 Vintage
 QuickCheck](https://getcode.substack.com/p/-property-based-testing-2-the-essentials).
 This is included for comparison purposes and might be a better
-starting point for understanding as it's simpler and its code has a
+starting point for understanding as it's simpler and the code has a
 fair bit of overlap with what's in `random-based.janet`.
 
 ## Suggestions
