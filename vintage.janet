@@ -111,6 +111,8 @@
     (mapn string/join
           (list-of-length simple-name-length letters)))
 
+  (sample simple-names)
+
   (<= "a" "j" "z")
   # =>
   true
@@ -135,6 +137,8 @@
   (def ages
     (int-between min-age max-age))
 
+  (sample ages)
+
   (defn valid-age
     [age]
     (<= min-age age max-age))
@@ -147,6 +151,8 @@
     (mapn (fn [name age] {:name name :age age})
           simple-names
           ages))
+
+  (sample persons)
 
   (all |(and (valid-simple-name (get $ :name))
              (valid-age (get $ :age)))
@@ -205,6 +211,8 @@
 
   (def lists-of-person
     (list-of persons))
+
+  (sample lists-of-person)
 
   (let [result (sample lists-of-person)]
     (and (= n-samples-default
