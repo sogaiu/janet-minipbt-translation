@@ -132,12 +132,12 @@
 (defn bind
   [f gen]
   (make-gen (fn [&opt min-size]
-              (def [result size-outer] (gen min-size))
+              (def [result-outer size-outer] (gen min-size))
               (def new-min-size (dec-size min-size size-outer))
-              (def [next-result size-inner]
-                ((f result) new-min-size))
+              (def [result-inner size-inner]
+                ((f result-outer) new-min-size))
               (def size (+ size-inner size-outer))
-              [next-result size])))
+              [result-inner size])))
 
 (defn list-of-length
   [n gen]
