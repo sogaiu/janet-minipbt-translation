@@ -5,13 +5,9 @@
     (math/rng seed)
     (math/rng)))
 
-(defn make-gen
-  [gen-fn]
-  (fn [] (gen-fn)))
-
 (defn constant
   [value]
-  (make-gen (fn [] value)))
+  (fn [] value))
 
 (comment
 
@@ -45,9 +41,9 @@
 
 (defn int-between
   [low high]
-  (make-gen (fn []
-              (+ low
-                 (math/rng-int rng (inc (- high low)))))))
+  (fn []
+    (+ low
+       (math/rng-int rng (inc (- high low))))))
 
 (comment
 
@@ -74,10 +70,10 @@
 # single variadic `mapn`
 (defn mapn
   [f & gens]
-  (make-gen (fn []
-              (def gen-results
-                (seq [gen :in gens] (gen)))
-              (f ;gen-results))))
+  (fn []
+    (def gen-results
+      (seq [gen :in gens] (gen)))
+    (f ;gen-results)))
 
 (def letters
   (mapn string/from-bytes
@@ -164,9 +160,9 @@
 
 (defn bind
   [f gen]
-  (make-gen (fn []
-              (def a-gen (f (gen)))
-              (a-gen))))
+  (fn []
+    (def a-gen (f (gen)))
+    (a-gen)))
 
 (def [min-list-len max-list-len] [0 10])
 

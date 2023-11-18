@@ -5,14 +5,9 @@
     (math/rng seed)
     (math/rng)))
 
-(defn make-gen
-  [gen-fn]
-  (fn [&opt min-size]
-    (gen-fn min-size)))
-
 (defn constant
   [value]
-  (make-gen (fn [_] [value 0])))
+  (fn [&opt _] [value 0]))
 
 (comment
 
@@ -64,16 +59,16 @@
       (dec (* -2 i))
       (* 2 i)))
   #
-  (make-gen (fn [&opt min-size]
-              #(printf "min-size: %n" min-size)
-              (def value
-                (+ low
-                   (math/rng-int rng (inc (- high low)))))
-              #(printf "value: %n" value)
-              (def size (zig-zag value))
-              #(printf "size: %n" size)
-              (dec-size min-size size)
-              [value size])))
+  (fn [&opt min-size]
+    #(printf "min-size: %n" min-size)
+    (def value
+      (+ low
+         (math/rng-int rng (inc (- high low)))))
+    #(printf "value: %n" value)
+    (def size (zig-zag value))
+    #(printf "size: %n" size)
+    (dec-size min-size size)
+    [value size]))
 
 (comment
 
@@ -100,17 +95,17 @@
 # single variadic `mapn`
 (defn mapn
   [f & gens]
-  (make-gen (fn [&opt min-size]
-              (def results @[])
-              (var size-acc 0)
-              (var cur-min-size min-size)
-              (each gen gens
-                (def [result size] (gen cur-min-size))
-                (set cur-min-size (dec-size cur-min-size size))
-                (array/push results result)
-                (+= size-acc size))
-              #
-              [(f ;results) size-acc])))
+  (fn [&opt min-size]
+    (def results @[])
+    (var size-acc 0)
+    (var cur-min-size min-size)
+    (each gen gens
+      (def [result size] (gen cur-min-size))
+      (set cur-min-size (dec-size cur-min-size size))
+      (array/push results result)
+      (+= size-acc size))
+    #
+    [(f ;results) size-acc]))
 
 (def letters
   (mapn string/from-bytes
@@ -131,13 +126,13 @@
 
 (defn bind
   [f gen]
-  (make-gen (fn [&opt min-size]
-              (def [result-outer size-outer] (gen min-size))
-              (def new-min-size (dec-size min-size size-outer))
-              (def [result-inner size-inner]
-                ((f result-outer) new-min-size))
-              (def size (+ size-inner size-outer))
-              [result-inner size])))
+  (fn [&opt min-size]
+    (def [result-outer size-outer] (gen min-size))
+    (def new-min-size (dec-size min-size size-outer))
+    (def [result-inner size-inner]
+      ((f result-outer) new-min-size))
+    (def size (+ size-inner size-outer))
+    [result-inner size]))
 
 (defn list-of-length
   [n gen]
@@ -153,6 +148,8 @@
   (def simple-names
     (mapn string/join
           (list-of-length simple-name-length letters)))
+
+  (sample simple-names)
 
   (<= "a" "j" "z")
   # =>
@@ -178,6 +175,8 @@
 
   (def ages
     (int-between min-age max-age))
+
+  (sample ages)
 
   (defn valid-age
     [age]
