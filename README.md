@@ -17,12 +17,12 @@ implement (and maintain) it.
 
 Somewhat later, I came across a series of articles about
 property-based testing in which the author was kind enough to build up
-three simple implementations (with working code even!), one of which
-was based on Hypothesis.
+three simple implementations (with working code even!).
 
-The third approach in the article series was one I had not heard of
-before.  Allegedly, it was even simpler to understand than Hypothesis
-and there seemed to be some hope of delivering decent enough results.
+The first two were based on familiar approaches [1] but the third one
+in the article series was unfamiliar.  Allegedly, it was even simpler
+to understand than Hypothesis and there seemed to be some hope of
+delivering decent enough results.
 
 This repository is primarily about a Janet translation of the code in
 this "new found" approach.
@@ -40,7 +40,8 @@ translation of code from the second article, [The Essentials of
 Vintage
 QuickCheck](https://getcode.substack.com/p/-property-based-testing-2-the-essentials).
 This is included for comparison purposes and might be a better
-starting point for understanding as it's simpler.
+starting point for understanding as it's simpler and its code has a
+fair bit of overlap with what's in `random-based.janet`.
 
 ## Suggestions
 
@@ -60,10 +61,18 @@ that inspired the sixth article.
 
 Many thanks go out to the following folks:
 
-* AnthonyLoyd - author of
-  [CsCheck](https://github.com/AnthonyLloyd/CsCheck), the library that
-  the sixth article in the series was inspired by.
+* AnthonyLoyd - author of CsCheck, the library that the sixth article
+  in the series was inspired by.
 * DRMacIver - creator of Hypothesis, the system I studied (and applied
   successfully) but failed to understand well enough to translate.
-* kurtschelfthout - article series and related code
+* kurtschelfthout - author of article series, related code, and
+  [FsCheck](https://github.com/fscheck/FsCheck).
+
+## Footnotes
+
+[1] The three implementations are inspired by:
+
+  * [QuickCheck](https://github.com/nick8325/quickcheck)
+  * [Hypothesis](https://github.com/HypothesisWorks/hypothesis)
+  * [CsCheck](https://github.com/AnthonyLloyd/CsCheck)
 
