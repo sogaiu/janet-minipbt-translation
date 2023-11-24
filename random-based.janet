@@ -51,6 +51,25 @@
   #
   smaller)
 
+(comment
+
+  (dec-size nil 1)
+  # =>
+  nil
+
+  (dec-size 2 1)
+  # =>
+  1
+
+  (try
+    (dec-size 2 3)
+    ([e]
+      e))
+  # =>
+  [:size-exceeded 2 3 -1]
+
+  )
+
 (defn int-between
   [low high]
   (defn zig-zag
