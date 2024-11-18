@@ -6,9 +6,11 @@
 
   (sort-by-age [{:age 5 :name "alice"}
                 {:age 6 :name "bob"}
-                {:age 3 :name "charlie"}])
+                {:age 3 :name "charlie"}
+                {:age 2 :name "dan"}])
   # =>
-  @[{:age 3 :name "charlie"}
+  @[{:age 2 :name "dan"}
+    {:age 3 :name "charlie"}
     {:age 5 :name "alice"}
     {:age 6 :name "bob"}]
 
@@ -20,13 +22,16 @@
 
 (comment
 
-  (wrong-sort-by-age [{:age 5 :name "alice"}
-                      {:age 6 :name "bob"}
-                      {:age 3 :name "charlie"}])
+  (def original
+    [{:age 5 :name "alice"}
+     {:age 6 :name "bob"}
+     {:age 3 :name "charlie"}])
+
+  # expressed this way instead of explicitly to avoid being broken by
+  # changes to janet's hashing
+  (wrong-sort-by-age original)
   # =>
-  @[{:age 5 :name "alice"}
-    {:age 6 :name "bob"}
-    {:age 3 :name "charlie"}]
+  (sort (array ;original))
 
   )
 
